@@ -51,4 +51,13 @@ public class Empresa {
 
     }
 
+    private void pesquisaDepartamento(Depertamento x){
+        system.out.println("Digite o nome do departamento: " + x);
+        for (String departamento : departamentos) {
+            if (departamento.equals(x)) {
+                System.out.println(x);
+            }
+        }
+    }
+
 }
