@@ -8,11 +8,12 @@ public class RegistroCusto {
     private String departamento;
     private Funcionario funcionario;
 
-    public RegistroCusto(String categoria, double valor, String descricao, Date data, String departamento, Funcionario funcionario) {
+    // ESTA SEM O ATRIBUTO DATA
+    public RegistroCusto(String categoria, double valor, String descricao, String departamento, Funcionario funcionario) {
         this.categoria = categoria;
         this.valor = valor;
         this.descricao = descricao;
-        this.data = data;
+//        this.data = data;
         this.departamento = departamento;
         this.funcionario = funcionario;
     }
