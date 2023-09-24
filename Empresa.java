@@ -48,6 +48,14 @@ public class Empresa {
     }
 
     private void painelEstatisticas(){
+    System.out.println("Funcionário atualmente logado: " + logado);
+    System.out.println("Valor total dos custos do mês atual: " + metodocalculamescusto);
+    System.out.println("Valor total dos custos dos últimos 3 meses, por departamento" + metodocomforpraprintar);
+    System.out.println("Os 3 funcionários com a maior soma de custos registrados: " + metodocalculamaior);
+
+
+        }
+
 
     }
 
