@@ -15,21 +15,11 @@ public class Empresa {
     }
 
     public void executa(){
-        RegistroCusto r1 = new RegistroCusto("categoria", 111.11, "Compras de carro", "Compras", new Funcionario(0, "nome", "TI"));
-        RegistroCusto r2 = new RegistroCusto("categoria", 222.22, "Funcionario novo", "RH", new Funcionario(0, "nome", "TI"));
-        registros.add(r1);
-        registros.add(r2);
         criaDepartamentos();
         login();
-        System.out.println(registros.size());
-        System.out.println("Digite o nome do departamento para pesquisa: ");
-        String dp = entrada.nextLine();
-
-        pesquisaDepartamento(dp);
     }
 
     private void criaDepartamentos(){
-        System.out.println("Criando departamentos ...");
         departamentos.add("RH");
         departamentos.add("Compras");
         departamentos.add("Vendas");
