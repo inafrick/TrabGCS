@@ -6,12 +6,14 @@ public class Empresa {
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<RegistroCusto> registros;
     private ArrayList<String> departamentos;
+    private Funcionario logado;
 
     public Empresa(){
         entrada = new Scanner(System.in);
         funcionarios = new ArrayList<>();
         registros = new ArrayList<>();
         departamentos = new ArrayList<>();
+        logado = null;
     }
 
     public void executa(){
@@ -62,7 +64,24 @@ public class Empresa {
     }
 
     private void login(){
+        System.out.println("Selecione o usuario: ");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-");
+        int cont = 0;
+        for(Funcionario aux: funcionarios){
+            System.out.println("[" + cont + "] " + aux.getNome());
+            cont++;
+        }
+        System.out.println("=-=-=-=-=-=-=-=-=-=-");
 
+        System.out.println("Digite o numero correspondente: ");
+        int num = entrada.nextInt();
+        if(num<0 || num>cont){
+            throw new IndexOutOfBoundsException();
+        } else {
+            logado = funcionarios.get(num);
+            System.out.println("O sistema foi iniciado no usuario de : " + logado.getNome() + " com a matricula: " + logado.getMatricula());
+        }
+        System.out.println("=-=-=-=-=-=-=-=-=-=-");
     }
 
     private void cadastraFuncionario(){
