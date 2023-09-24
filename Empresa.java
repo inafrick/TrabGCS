@@ -20,7 +20,6 @@ public class Empresa {
         criaDepartamentos();
         criaFuncionarios();
         login();
-    
     }
 
     private void criaDepartamentos(){
@@ -76,7 +75,7 @@ public class Empresa {
 
         System.out.println("Digite o numero correspondente: ");
         int num = entrada.nextInt();
-        if(num<0 || num>cont){
+        if(num<0 || num>= cont){
             throw new IndexOutOfBoundsException();
         } else {
             logado = funcionarios.get(num);
@@ -117,7 +116,7 @@ public class Empresa {
         for(int i = 0; i < departamentos.size(); i++) {
             System.out.println(departamentos.get(i));
         }
-        System.out.println(custo+ descricao + ano+ mes+ categoria);
+        System.out.println(custo + descricao + ano + mes + categoria);
 
         int verifica = 0;
         while(verifica == 0) {
@@ -126,7 +125,8 @@ public class Empresa {
 
         for(int i = 0; i < departamentos.size(); i++) {
             if(departamento.equals(departamentos.get(i))){
-                RegistroCusto.add(custo, descricao, ano, mes, categoria, departamento, logado);
+                RegistroCusto novoRegistro = new RegistroCusto(categoria, custo, descricao, ano, mes, departamento, logado);
+                registros.add(novoRegistro);
                 System.out.println("Cadastro feito com sucesso");
                 verifica = 1;
                 break;
