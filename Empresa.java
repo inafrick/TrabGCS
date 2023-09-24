@@ -22,10 +22,10 @@ public class Empresa {
         criaDepartamentos();
         login();
         System.out.println(registros.size());
-//        System.out.println("Digite o nome do departamento para pesquisa: ");
-//        String dp = entrada.nextLine();
+        System.out.println("Digite o nome do departamento para pesquisa: ");
+        String dp = entrada.nextLine();
 
-        pesquisaDepartamento();
+        pesquisaDepartamento(dp);
     }
 
     private void criaDepartamentos(){
@@ -60,8 +60,7 @@ public class Empresa {
     private void painelEstatisticas(){
 
     }
-    private void pesquisaDepartamento(){
-        String x = "Compras";
+    private void pesquisaDepartamento(String x){
         System.out.println("Pesquisando departamento ...");
         for (RegistroCusto registro : registros) {
             if (registro.getDepartamento().equals(x)) {
