@@ -4,15 +4,17 @@ public class RegistroCusto {
     private String categoria;
     private double valor;
     private String descricao;
-    private Date data;
+    private int ano;
+    private int mes;
     private String departamento;
     private Funcionario funcionario;
 
-    public RegistroCusto(String categoria, double valor, String descricao, Date data, String departamento, Funcionario funcionario) {
+    public RegistroCusto(String categoria, double valor, String descricao, int ano, int mes, String departamento, Funcionario funcionario) {
         this.categoria = categoria;
         this.valor = valor;
         this.descricao = descricao;
-        this.data = data;
+        this.ano = ano;
+        this.mes = mes;
         this.departamento = departamento;
         this.funcionario = funcionario;
     }
@@ -29,10 +31,7 @@ public class RegistroCusto {
         return descricao;
     }
 
-    public Date getData() {
-        return data;
-    }
-
+   
     public String getDepartamento() {
         return departamento;
     }
@@ -40,4 +39,14 @@ public class RegistroCusto {
     public Funcionario getFuncionario() {
         return funcionario;
     }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    
 }
