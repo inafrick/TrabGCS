@@ -104,18 +104,23 @@ public class Empresa {
         System.out.println("Insira valor do custo: ");
         double custo = entrada.nextDouble();
         entrada.nextLine();
+
         System.out.println("Insira a descricao do custo: ");
         String descricao = entrada.nextLine();
+
         System.out.println("Insira o mês: ");
         int mes = entrada.nextInt();
+
         System.out.println("Insira o ano: ");
         int ano = entrada.nextInt();
         entrada.nextLine();
+
         System.out.println("Insira a categoria do custo: ");
         String categoria = entrada.nextLine();
         for(int i = 0; i < departamentos.size(); i++) {
             System.out.println(departamentos.get(i));
         }
+
         System.out.println(custo + descricao + ano + mes + categoria);
 
         int verifica = 0;
@@ -125,8 +130,10 @@ public class Empresa {
 
         for(int i = 0; i < departamentos.size(); i++) {
             if(departamento.equals(departamentos.get(i))){
+
                 RegistroCusto novoRegistro = new RegistroCusto(categoria, custo, descricao, ano, mes, departamento, logado);
                 registros.add(novoRegistro);
+
                 System.out.println("Cadastro feito com sucesso");
                 verifica = 1;
                 break;
