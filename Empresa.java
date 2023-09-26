@@ -135,8 +135,14 @@ public class Empresa {
                 case 7:
                     painelEstatisticas();
                     break;
+                case 8:
+                    mostraFuncionarioPorDepartamento();
+                    break;
+                case 9:
+                    mudaDepartamento();
+                    break;
                 default:
-                    System.out.println("Opção inválida. Insira novamente."); break;
+                     break;
 
             }
         }   while(op!=0);
@@ -150,6 +156,8 @@ public class Empresa {
         System.out.println("[4] Cadastra Registro de Custos");
         System.out.println("[6] Remover Ultimo Registro de Custo");
         System.out.println("[7] Mostrar Painel de Estatísticas");
+        System.out.println("[8] Escolha um depertamento para visualizar seus funcionarios");
+        System.out.println("[9] Transferencia para outro departamento");
         System.out.println("================================");
     }
 
@@ -276,6 +284,70 @@ public class Empresa {
             }
             if(verifica)System.out.println("Departamento não encontrado. Insira novamente.");
         }
+
+    }
+    private void mostraFuncionarioPorDepartamento() {
+        System.out.println("Escolha um departamento");
+        String departamento = entrada.nextLine();
+
+        System.out.println("Funcionários do departamento de " + departamento + ":");
+
+        boolean departamentoEncontrado = false;
+
+            for (Funcionario funcionario : funcionarios) {
+                if (funcionario.getDepartamento().equalsIgnoreCase(departamento)) {
+                     System.out.println("Matrícula: " + funcionario.getMatricula() +
+                        " | Nome: " + funcionario.getNome() +
+                        " | Departamento: " + funcionario.getDepartamento());
+                            departamentoEncontrado = true;
+        }
+    }
+    if (!departamentoEncontrado) {
+        System.out.println("Não foi encontrado nenhum funcionario no/a " + departamento);
+        }
+    }
+
+    private void mudaDepartamento(){
+        System.out.println("Insira o departamento que deseja ser transferido: ");
+        String novoDepart = entrada.nextLine();
+        while(!departamentos.contains(novoDepart)){
+            System.out.println("Departamento inválido, tente novamente.");
+            novoDepart = entrada.nextLine();
+        }
+        logado.setDepartamento(novoDepart);
+        System.out.println("Departamento alterado com sucesso.");
+
+    }
+    private void mostraFuncionarioPorDepartamento() {
+        System.out.println("Escolha um departamento");
+        String departamento = entrada.nextLine();
+
+        System.out.println("Funcionários do departamento de " + departamento + ":");
+
+        boolean departamentoEncontrado = false;
+
+            for (Funcionario funcionario : funcionarios) {
+                if (funcionario.getDepartamento().equalsIgnoreCase(departamento)) {
+                     System.out.println("Matrícula: " + funcionario.getMatricula() +
+                        " | Nome: " + funcionario.getNome() +
+                        " | Departamento: " + funcionario.getDepartamento());
+                            departamentoEncontrado = true;
+        }
+    }
+    if (!departamentoEncontrado) {
+        System.out.println("Não foi encontrado nenhum funcionario no/a " + departamento);
+        }
+    }
+
+    private void mudaDepartamento(){
+        System.out.println("Insira o departamento que deseja ser transferido: ");
+        String novoDepart = entrada.nextLine();
+        while(!departamentos.contains(novoDepart)){
+            System.out.println("Departamento inválido, tente novamente.");
+            novoDepart = entrada.nextLine();
+        }
+        logado.setDepartamento(novoDepart);
+        System.out.println("Departamento alterado com sucesso.");
 
     }
 
