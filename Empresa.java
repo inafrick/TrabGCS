@@ -112,6 +112,9 @@ public class Empresa {
                 case 8:
                     mostraFuncionarioPorDepartamento();
                     break;
+                case 9:
+                    mudaDepartamento();
+                    break;
                 default:
                      break;
 
@@ -125,6 +128,7 @@ public class Empresa {
         System.out.println("[4] Cadastra Registro de Custos");
         System.out.println("[6] Remover Ultimo Registro de Custo");
         System.out.println("[8] Escolha um depertamento para visualizar seus funcionarios");
+        System.out.println("[9] Transferencia para outro departamento");
     }
 
     private void cadastraFuncionario(){
@@ -246,5 +250,17 @@ public class Empresa {
     if (!departamentoEncontrado) {
         System.out.println("Não foi encontrado nenhum funcionario no/a " + departamento);
         }
+    }
+
+    private void mudaDepartamento(){
+        System.out.println("Insira o departamento que deseja ser transferido: ");
+        String novoDepart = entrada.nextLine();
+        while(!departamentos.contains(novoDepart)){
+            System.out.println("Departamento inválido, tente novamente.");
+            novoDepart = entrada.nextLine();
+        }
+        logado.setDepartamento(novoDepart);
+        System.out.println("Departamento alterado com sucesso.");
+
     }
 }
