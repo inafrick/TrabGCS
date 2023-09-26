@@ -24,8 +24,9 @@ public class Empresa {
     public void executa(){
         criaDepartamentos();
         criaFuncionarios();
+        criaRegistroDeCusto();
         login();
-        painelEstatisticas();
+        executaMenu();
     }
 
     private void criaDepartamentos(){
@@ -69,6 +70,26 @@ public class Empresa {
         funcionarios.add(new Funcionario(18, "Rachel", "Financeiro"));
     }
 
+    private void criaRegistroDeCusto(){
+        registros.add(new RegistroCusto("Aquisição", 2500, "Placa de Video", LocalDate.parse("25/09/2023", formatter), "TI", logado));
+        registros.add(new RegistroCusto("Manutenção", 500, "Maquina de Café", LocalDate.parse("25/08/2023", formatter), "RH", logado));
+
+        registros.add(new RegistroCusto("Aquisição", 1500, "Processador", LocalDate.parse("23/09/2023", formatter), "TI", logado));
+        registros.add(new RegistroCusto("Aquisição", 750, "Projetor", LocalDate.parse("25/09/2023", formatter), "Financeiro", logado));
+
+        registros.add(new RegistroCusto("Aquisição", 150, "Cimento", LocalDate.parse("28/03/2021", formatter), "Engenharia", logado));
+        registros.add(new RegistroCusto("Aquisição", 500, "Grão de Café", LocalDate.parse("29/01/2022", formatter), "Financeiro", logado));
+
+        registros.add(new RegistroCusto("Aquisição", 635, "Placa Mãe", LocalDate.parse("15/10/2020", formatter), "TI", logado));
+        registros.add(new RegistroCusto("Aquisição", 250, "Panfletos", LocalDate.parse("25/09/2023", formatter), "Marketing", logado));
+
+        registros.add(new RegistroCusto("Aquisição", 2380, "Placa de Video", LocalDate.parse("08/08/2023", formatter), "Marketing", logado));
+        registros.add(new RegistroCusto("Manutenção", 2760, "Formatar PCs", LocalDate.parse("21/06/2023", formatter), "TI", logado));
+
+        registros.add(new RegistroCusto("Aquisição", 75, "Trena", LocalDate.parse("30/08/2023", formatter), "Engenharia", logado));
+        registros.add(new RegistroCusto("Aquisição", 5700, "Monitores", LocalDate.parse("19/04/2023", formatter), "TI", logado));
+    }
+
     private void login(){
         System.out.println("Selecione o usuario: ");
         System.out.println("=-=-=-=-=-=-=-=-=-=-");
@@ -87,7 +108,6 @@ public class Empresa {
             logado = funcionarios.get(num);
             System.out.println("O sistema foi iniciado no usuario de : " + logado.getNome() + " com a matricula: " + logado.getMatricula());
         }
-        System.out.println("=-=-=-=-=-=-=-=-=-=-");
     }
     
     private void executaMenu(){
@@ -100,6 +120,9 @@ public class Empresa {
             switch(op){
                 case 0:
                     System.out.println("Fim do programa."); break;
+                case 1:
+                    login();
+                    break;
                 case 2: 
                     cadastraFuncionario();
                     break;
@@ -108,6 +131,9 @@ public class Empresa {
                     break;
                 case 6:
                     excluiUltimoRegistroCusto();
+                    break;
+                case 7:
+                    painelEstatisticas();
                     break;
                 default:
                     System.out.println("Opção inválida. Insira novamente."); break;
@@ -118,9 +144,13 @@ public class Empresa {
 
     private void menu(){
         System.out.println("============= MENU =============");
+        System.out.println("[0] Sair do Sistema");
+        System.out.println("[1] Trocar de Usuário");
 		System.out.println("[2] Cadastra Funcionário");
         System.out.println("[4] Cadastra Registro de Custos");
         System.out.println("[6] Remover Ultimo Registro de Custo");
+        System.out.println("[7] Mostrar Painel de Estatísticas");
+        System.out.println("================================");
     }
 
     private void cadastraFuncionario(){
@@ -178,10 +208,12 @@ public class Empresa {
 
     private void painelEstatisticas() {
         System.out.println("Funcionário atualmente logado: " + logado.getNome());
-        //System.out.println("Valor total dos custos do mês atual: " + metodocalculamescusto);
-        //System.out.println("Valor total dos custos dos últimos 3 meses, por departamento" + metodocomforpraprintar);
+        System.out.println("Valor total dos custos do mês atual: R$" + calculaCustoMes(9, 2023));
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+        calculaTresMesesDepto(LocalDate.parse("01/07/2023", formatter));
 
-        for (int i = 0; i < registros.size(); i++) {
+        /**
+         * for (int i = 0; i < registros.size(); i++) {
             System.out.println(registros.get(i));
         }
         System.out.println("Os 3 funcionários com a maior soma de custos registrados: ");
@@ -197,6 +229,8 @@ public class Empresa {
 
         }
         System.out.println(registros.get(1).getValor() + "e "+ registros.get(1).getFuncionario().getNome());
+         */
+        
     }
 
 
@@ -245,5 +279,30 @@ public class Empresa {
 
     }
 
+    private double calculaCustoMes(int mes, int ano){
+        double valorMes = 0;
+        for(RegistroCusto aux: registros){
+            LocalDate data = aux.getData();
+            if(data.getMonthValue() == mes && data.getYear() == ano){
+                valorMes += aux.getValor();
+            }
+        }
+        return valorMes;
+    }
+
+    private void calculaTresMesesDepto(LocalDate data){
+        for(String depto: departamentos){
+            double somaTresMeses = 0;
+            System.out.print("Gasto do departamento de " + depto + ": R$ ");
+            for(RegistroCusto aux: registros){
+                if(aux.getDepartamento().equals(depto)){
+                    if(aux.getData().isAfter(data)){
+                        somaTresMeses += aux.getValor();
+                    }
+                }
+            }
+            System.out.println(somaTresMeses);
+        }
+    }
 }
 
