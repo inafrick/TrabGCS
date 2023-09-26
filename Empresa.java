@@ -25,7 +25,7 @@ public class Empresa {
         criaDepartamentos();
         criaFuncionarios();
         login();
-        executaMenu();
+        painelEstatisticas();
     }
 
     private void criaDepartamentos(){
@@ -176,17 +176,30 @@ public class Empresa {
             System.out.println("Não há nenhum registro de custo registrado");
     }
 
-    private void painelEstatisticas(){
-    System.out.println("Funcionário atualmente logado: " + logado);
-    System.out.println("Valor total dos custos do mês atual: " + metodocalculamescusto);
-    System.out.println("Valor total dos custos dos últimos 3 meses, por departamento" + metodocomforpraprintar);
-    System.out.println("Os 3 funcionários com a maior soma de custos registrados: " + metodocalculamaior);
+    private void painelEstatisticas() {
+        System.out.println("Funcionário atualmente logado: " + logado.getNome());
+        //System.out.println("Valor total dos custos do mês atual: " + metodocalculamescusto);
+        //System.out.println("Valor total dos custos dos últimos 3 meses, por departamento" + metodocomforpraprintar);
+
+        for (int i = 0; i < registros.size(); i++) {
+            System.out.println(registros.get(i));
+        }
+        System.out.println("Os 3 funcionários com a maior soma de custos registrados: ");
+        for (int i = 0; i < registros.size() - 1; i++) {
+            double indiceMaior = registros.get(i).getValor();
+
+            for (int j = i + 1; j < registros.size(); j++) {
+                if (registros.get(j).getValor() > indiceMaior) {
+                    indiceMaior = j;
+                }
+            }
 
 
         }
-
-
+        System.out.println(registros.get(1).getValor() + "e "+ registros.get(1).getFuncionario().getNome());
     }
+
+
 
     private void cadastraRegistroCusto(){
         System.out.print("Insira valor do custo: ");
@@ -231,4 +244,6 @@ public class Empresa {
         }
 
     }
+
 }
+
