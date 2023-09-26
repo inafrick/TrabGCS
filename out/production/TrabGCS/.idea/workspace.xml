@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9f765d9f-ce9f-402d-954f-03709c3b2d54" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/Empresa.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+<<<<<<< HEAD
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Empresa.java" root0="SKIP_INSPECTION" />
+  </component>
+=======
+>>>>>>> 77e00fe556efdfa2c3f4acff10568ed38d6bd344
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Vojs7W55pPP2jGDgI3UhTltSlL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
+    "git-widget-placeholder": "feature-4",
+=======
+    "git-widget-placeholder": "feature-5",
+>>>>>>> 77e00fe556efdfa2c3f4acff10568ed38d6bd344
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/vicen/OneDrive/Área de Trabalho/PUCRS/GCS/TrabGCS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+<<<<<<< HEAD
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TrabGCS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+=======
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+>>>>>>> 77e00fe556efdfa2c3f4acff10568ed38d6bd344
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f765d9f-ce9f-402d-954f-03709c3b2d54" name="Changes" comment="" />
+      <created>1695509530690</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695509530690</updated>
+      <workItem from="1695509531770" duration="32000" />
+      <workItem from="1695509571089" duration="1034000" />
+      <workItem from="1695510615816" duration="217000" />
+<<<<<<< HEAD
+      <workItem from="1695510840792" duration="7746000" />
+      <workItem from="1695574594720" duration="3898000" />
+=======
+      <workItem from="1695510840792" duration="1729000" />
+>>>>>>> 77e00fe556efdfa2c3f4acff10568ed38d6bd344
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+<<<<<<< HEAD
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+=======
+>>>>>>> 77e00fe556efdfa2c3f4acff10568ed38d6bd344
+</project>
