@@ -318,38 +318,6 @@ public class Empresa {
         System.out.println("Departamento alterado com sucesso.");
 
     }
-    private void mostraFuncionarioPorDepartamento() {
-        System.out.println("Escolha um departamento");
-        String departamento = entrada.nextLine();
-
-        System.out.println("Funcionários do departamento de " + departamento + ":");
-
-        boolean departamentoEncontrado = false;
-
-            for (Funcionario funcionario : funcionarios) {
-                if (funcionario.getDepartamento().equalsIgnoreCase(departamento)) {
-                     System.out.println("Matrícula: " + funcionario.getMatricula() +
-                        " | Nome: " + funcionario.getNome() +
-                        " | Departamento: " + funcionario.getDepartamento());
-                            departamentoEncontrado = true;
-        }
-    }
-    if (!departamentoEncontrado) {
-        System.out.println("Não foi encontrado nenhum funcionario no/a " + departamento);
-        }
-    }
-
-    private void mudaDepartamento(){
-        System.out.println("Insira o departamento que deseja ser transferido: ");
-        String novoDepart = entrada.nextLine();
-        while(!departamentos.contains(novoDepart)){
-            System.out.println("Departamento inválido, tente novamente.");
-            novoDepart = entrada.nextLine();
-        }
-        logado.setDepartamento(novoDepart);
-        System.out.println("Departamento alterado com sucesso.");
-
-    }
 
     private double calculaCustoMes(int mes, int ano){
         double valorMes = 0;
