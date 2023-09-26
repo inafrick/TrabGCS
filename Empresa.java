@@ -106,6 +106,9 @@ public class Empresa {
                 case 4:
                     cadastraRegistroCusto();
                     break;
+                case 6:
+                    excluiUltimoRegistroCusto();
+                    break;
             }
         }   while(op!=0);
     }
@@ -114,6 +117,7 @@ public class Empresa {
         System.out.println("============= MENU =============");
 		System.out.println("[2] Cadastra Funcionário");
         System.out.println("[4] Cadastra Registro de Custos");
+        System.out.println("[6] Remover Ultimo Registro de Custo");
     }
 
     private void cadastraFuncionario(){
