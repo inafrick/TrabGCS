@@ -10,6 +10,7 @@ public class Empresa {
     private ArrayList<String> departamentos;
     private Funcionario logado;
     private DateTimeFormatter formatter;
+    private RegistroCusto ultimoRegistro;
 
     public Empresa(){
         entrada = new Scanner(System.in);
@@ -105,6 +106,9 @@ public class Empresa {
                 case 4:
                     cadastraRegistroCusto();
                     break;
+                case 6:
+                    excluiUltimoRegistroCusto();
+                    break;
             }
         }   while(op!=0);
     }
@@ -113,6 +117,7 @@ public class Empresa {
         System.out.println("============= MENU =============");
 		System.out.println("[2] Cadastra Funcionário");
         System.out.println("[4] Cadastra Registro de Custos");
+        System.out.println("[6] Remover Ultimo Registro de Custo");
     }
 
     private void cadastraFuncionario(){
@@ -156,7 +161,16 @@ public class Empresa {
     }
 
     private void excluiUltimoRegistroCusto(){
-
+        if(registros.size()!= 0){ 
+            if(registros.get((registros.size()-1)).equals(ultimoRegistro)){
+                registros.remove((registros.size()-1));
+            System.out.println("Ultimo registro de custo removido com sucesso.");
+            }   
+            else
+                System.out.println("Ultimo registro de custo já foi removido previamente.");
+            }
+        else
+            System.out.println("Não há nenhum registro de custo registrado");
     }
 
     private void painelEstatisticas(){
@@ -192,6 +206,7 @@ public class Empresa {
 
                     RegistroCusto novoRegistro = new RegistroCusto(categoria, custo, descricao, dataFormatada, departamento, logado);
                     registros.add(novoRegistro);
+                    ultimoRegistro = novoRegistro;
 
                     System.out.println("\nCadastro feito com sucesso.");
                     System.out.println("Aquisição de " + descricao + ", R$" + custo +  ", " + dataFormatada + ", para o(a) " + departamento + ".");
