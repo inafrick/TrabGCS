@@ -109,8 +109,11 @@ public class Empresa {
                 case 6:
                     excluiUltimoRegistroCusto();
                     break;
+                case 8:
+                    mostraFuncionarioPorDepartamento();
+                    break;
                 default:
-                    System.out.println("Opção inválida. Insira novamente."); break;
+                     break;
 
             }
         }   while(op!=0);
@@ -121,6 +124,7 @@ public class Empresa {
 		System.out.println("[2] Cadastra Funcionário");
         System.out.println("[4] Cadastra Registro de Custos");
         System.out.println("[6] Remover Ultimo Registro de Custo");
+        System.out.println("[8] Escolha um depertamento para visualizar seus funcionarios");
     }
 
     private void cadastraFuncionario(){
@@ -222,5 +226,25 @@ public class Empresa {
             if(verifica)System.out.println("Departamento não encontrado. Insira novamente.");
         }
 
+    }
+    private void mostraFuncionarioPorDepartamento() {
+        System.out.println("Escolha um departamento");
+        String departamento = entrada.nextLine();
+
+        System.out.println("Funcionários do departamento de " + departamento + ":");
+
+        boolean departamentoEncontrado = false;
+
+            for (Funcionario funcionario : funcionarios) {
+                if (funcionario.getDepartamento().equalsIgnoreCase(departamento)) {
+                     System.out.println("Matrícula: " + funcionario.getMatricula() +
+                        " | Nome: " + funcionario.getNome() +
+                        " | Departamento: " + funcionario.getDepartamento());
+                            departamentoEncontrado = true;
+        }
+    }
+    if (!departamentoEncontrado) {
+        System.out.println("Não foi encontrado nenhum funcionario no/a " + departamento);
+        }
     }
 }
