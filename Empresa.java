@@ -115,6 +115,8 @@ public class Empresa {
                 case 9:
                     mudaDepartamento();
                     break;
+                case 10:
+                    removeFuncionario();
                 default:
                      break;
 
@@ -129,6 +131,7 @@ public class Empresa {
         System.out.println("[6] Remover Ultimo Registro de Custo");
         System.out.println("[8] Escolha um depertamento para visualizar seus funcionarios");
         System.out.println("[9] Transferencia para outro departamento");
+        
     }
 
     private void cadastraFuncionario(){
@@ -262,5 +265,31 @@ public class Empresa {
         logado.setDepartamento(novoDepart);
         System.out.println("Departamento alterado com sucesso.");
 
+    }
+    private void removeFuncionario() {
+        if (logado != null) {
+            System.out.println("Insira a matrícula do funcionário que deseja remover: ");
+            int matricula = entrada.nextInt();
+            entrada.nextLine();
+    
+            boolean remover = false;
+            for (int i = 0; i < funcionarios.size(); i++) {
+                if (funcionarios.get(i).getMatricula() == matricula) {
+                    Funcionario funcionarioRemovido = funcionarios.remove(i);
+                    System.out.println("Funcionário removido com sucesso");
+                    System.out.println("Matrícula: " + funcionarioRemovido.getMatricula() +
+                                       " | Nome: " + funcionarioRemovido.getNome() +
+                                       " | Departamento: " + funcionarioRemovido.getDepartamento());
+                    remover = true;
+                    break;
+                }
+            }
+    
+            if (!remover) {
+                System.out.println("Funcionário com a matrícula " + matricula + " não encontrado.");
+            }
+        } else {
+            System.out.println("Nenhum usuário logado. Faça o login antes de remover um funcionário.");
+        }
     }
 }
