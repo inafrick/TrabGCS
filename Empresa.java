@@ -10,6 +10,7 @@ public class Empresa {
     private ArrayList<String> departamentos;
     private Funcionario logado;
     private DateTimeFormatter formatter;
+    private RegistroCusto ultimoRegistro;
 
     public Empresa(){
         entrada = new Scanner(System.in);
@@ -156,7 +157,13 @@ public class Empresa {
     }
 
     private void excluiUltimoRegistroCusto(){
-
+        
+        if(registros.get((registros.size()-1)).equals(ultimoRegistro)){
+            registros.remove((registros.size()-1));
+            System.out.println("Ultimo registro de custo removido com sucesso.");
+        }
+        else
+            System.out.println("Ultimo registro de custo já foi removido previamente.");
     }
 
     private void painelEstatisticas(){
@@ -192,6 +199,7 @@ public class Empresa {
 
                     RegistroCusto novoRegistro = new RegistroCusto(categoria, custo, descricao, dataFormatada, departamento, logado);
                     registros.add(novoRegistro);
+                    ultimoRegistro = novoRegistro;
 
                     System.out.println("\nCadastro feito com sucesso.");
                     System.out.println("Aquisição de " + descricao + ", R$" + custo +  ", " + dataFormatada + ", para o(a) " + departamento + ".");
