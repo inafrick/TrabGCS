@@ -97,14 +97,16 @@ public class Empresa {
             op = entrada.nextInt();
             entrada.nextLine();
             switch(op){
-                case 0: 
-                    break;
+                case 0:
+                    System.out.println("Fim do programa."); break;
                 case 2: 
                     cadastraFuncionario();
                     break;
                 case 4:
                     cadastraRegistroCusto();
                     break;
+                default:
+                    System.out.println("Opção inválida. Insira novamente.");
             }
         }   while(op!=0);
     }
@@ -196,17 +198,13 @@ public class Empresa {
                     System.out.println("\nCadastro feito com sucesso.");
                     System.out.println("Aquisição de " + descricao + ", R$" + custo +  ", " + dataFormatada + ", para o(a) " + departamento + ".");
                     verifica = false;
-                    break;
-                }
-        
-            }
+                    if(verifica == false); break;
 
+                }
+
+            }
+            if(verifica)System.out.println("Departamento não encontrado. Insira novamente.");
         }
 
-    } 
-
-
-
-
-
+    }
 }
