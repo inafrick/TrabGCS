@@ -157,13 +157,16 @@ public class Empresa {
     }
 
     private void excluiUltimoRegistroCusto(){
-        
-        if(registros.get((registros.size()-1)).equals(ultimoRegistro)){
-            registros.remove((registros.size()-1));
+        if(registros.size()!= 0){ 
+            if(registros.get((registros.size()-1)).equals(ultimoRegistro)){
+                registros.remove((registros.size()-1));
             System.out.println("Ultimo registro de custo removido com sucesso.");
-        }
+            }   
+            else
+                System.out.println("Ultimo registro de custo já foi removido previamente.");
+            }
         else
-            System.out.println("Ultimo registro de custo já foi removido previamente.");
+            System.out.println("Não há nenhum registro de custo registrado");
     }
 
     private void painelEstatisticas(){
