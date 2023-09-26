@@ -1,20 +1,18 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class RegistroCusto {
     private String categoria;
     private double valor;
     private String descricao;
-    private int ano;
-    private int mes;
+    private LocalDate data;
     private String departamento;
     private Funcionario funcionario;
 
-    public RegistroCusto(String categoria, double valor, String descricao, int ano, int mes, String departamento, Funcionario funcionario) {
+    public RegistroCusto(String categoria, double valor, String descricao,LocalDate data, String departamento, Funcionario funcionario) {
         this.categoria = categoria;
         this.valor = valor;
         this.descricao = descricao;
-        this.ano = ano;
-        this.mes = mes;
+        this.data = data;
         this.departamento = departamento;
         this.funcionario = funcionario;
     }
@@ -40,12 +38,8 @@ public class RegistroCusto {
         return funcionario;
     }
 
-    public int getAno() {
-        return ano;
-    }
-
-    public int getMes() {
-        return mes;
+    public LocalDate getData() {
+        return data;
     }
 
     

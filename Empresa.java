@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Empresa {
     private Scanner entrada;
@@ -7,6 +9,7 @@ public class Empresa {
     private ArrayList<RegistroCusto> registros;
     private ArrayList<String> departamentos;
     private Funcionario logado;
+    private DateTimeFormatter formatter;
 
     public Empresa(){
         entrada = new Scanner(System.in);
@@ -14,6 +17,7 @@ public class Empresa {
         registros = new ArrayList<>();
         departamentos = new ArrayList<>();
         logado = null;
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
 
     public void executa(){
@@ -97,6 +101,10 @@ public class Empresa {
                     break;
                 case 2: 
                     cadastraFuncionario();
+                    break;
+                case 4:
+                    cadastraRegistroCusto();
+                    break;
             }
         }   while(op!=0);
     }
@@ -104,6 +112,7 @@ public class Empresa {
     private void menu(){
         System.out.println("============= MENU =============");
 		System.out.println("[2] Cadastra Funcionário");
+        System.out.println("[4] Cadastra Registro de Custos");
     }
 
     private void cadastraFuncionario(){
@@ -112,7 +121,7 @@ public class Empresa {
         String departamento;
 
         System.out.println("\nOpção Selecionada: [2] Cadastra Funcionário.");
-        System.out.println("Informe a matrícula do funcionário: ");
+        System.out.print("Informe a matrícula do funcionário: ");
         matricula = entrada.nextInt();
 
         boolean matriculaExistente = false;
@@ -126,9 +135,9 @@ public class Empresa {
 
         if(!matriculaExistente){
             entrada.nextLine();
-            System.out.println("Informe o nome do funcionário: ");
+            System.out.print("Informe o nome do funcionário: ");
             nome = entrada.nextLine();
-            System.out.println("Informe o departamento do funcionário: ");
+            System.out.print("Informe o departamento do funcionário: ");
             departamento = entrada.nextLine();
                 if(!departamentos.contains(departamento)){
                     System.out.println("Departamento não encontrado. Funcionário não cadastrado.");
@@ -155,44 +164,41 @@ public class Empresa {
     }
 
     private void cadastraRegistroCusto(){
-        System.out.println("Insira valor do custo: ");
+        System.out.print("Insira valor do custo: ");
         double custo = entrada.nextDouble();
         entrada.nextLine();
 
-        System.out.println("Insira a descricao do custo: ");
+        System.out.print("Insira a descricao do custo: ");
         String descricao = entrada.nextLine();
 
-        System.out.println("Insira o mês: ");
-        int mes = entrada.nextInt();
+        System.out.print("Insira a data (dd/MM/yyyy): ");
+        String dataString = entrada.nextLine();
+        LocalDate dataFormatada = LocalDate.parse(dataString, formatter);
 
-        System.out.println("Insira o ano: ");
-        int ano = entrada.nextInt();
-        entrada.nextLine();
-
-        System.out.println("Insira a categoria do custo: ");
+        System.out.print("Insira a categoria do custo: ");
         String categoria = entrada.nextLine();
+
         for(int i = 0; i < departamentos.size(); i++) {
             System.out.println(departamentos.get(i));
         }
 
-        System.out.println(custo + descricao + ano + mes + categoria);
+        boolean verifica = true;
+        while(verifica) {
+            System.out.print("Insira o departamento: ");
+            String departamento = entrada.nextLine();
 
-        int verifica = 0;
-        while(verifica == 0) {
-        System.out.println("Insira o departamento: ");
-        String departamento = entrada.nextLine();
+            for(int i = 0; i < departamentos.size(); i++) {
+                if(departamento.equals(departamentos.get(i))) {
 
-        for(int i = 0; i < departamentos.size(); i++) {
-            if(departamento.equals(departamentos.get(i))){
+                    RegistroCusto novoRegistro = new RegistroCusto(categoria, custo, descricao, dataFormatada, departamento, logado);
+                    registros.add(novoRegistro);
 
-                RegistroCusto novoRegistro = new RegistroCusto(categoria, custo, descricao, ano, mes, departamento, logado);
-                registros.add(novoRegistro);
-
-                System.out.println("Cadastro feito com sucesso");
-                verifica = 1;
-                break;
-                  }
-    
+                    System.out.println("\nCadastro feito com sucesso.");
+                    System.out.println("Aquisição de " + descricao + ", R$" + custo +  ", " + dataFormatada + ", para o(a) " + departamento + ".");
+                    verifica = false;
+                    break;
+                }
+        
             }
 
         }
