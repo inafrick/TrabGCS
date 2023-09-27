@@ -12,7 +12,7 @@ public class Empresa {
     private DateTimeFormatter formatter;
     private RegistroCusto ultimoRegistro;
 
-    public Empresa(){
+    public Empresa() {
         entrada = new Scanner(System.in);
         funcionarios = new ArrayList<>();
         registros = new ArrayList<>();
@@ -21,7 +21,25 @@ public class Empresa {
         formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
 
-    public void executa(){
+    public void executa() {
+        RegistroCusto r1 = new RegistroCusto("Alimentação", 100.00, "Almoço", LocalDate.parse("01/01/2021", formatter), "TI", new Funcionario(1, "Alice", "TI"));
+        registros.add(r1);
+
+        RegistroCusto r2 = new RegistroCusto("Transporte", 50.00, "Táxi", LocalDate.parse("02/01/2021", formatter), "TI", new Funcionario(2, "Bob", "TI"));
+        registros.add(r2);
+
+        RegistroCusto r3 = new RegistroCusto("Equipamentos", 200.00, "Compra de Mouse", LocalDate.parse("03/01/2021", formatter), "TI", new Funcionario(3, "Charlie", "TI"));
+        registros.add(r3);
+
+        RegistroCusto r4 = new RegistroCusto("Aluguel", 1500.00, "Aluguel de Sala", LocalDate.parse("04/01/2021", formatter), "Administração", new Funcionario(4, "David", "Administração"));
+        registros.add(r4);
+
+        RegistroCusto r5 = new RegistroCusto("Manutenção", 300.00, "Manutenção de Servidores", LocalDate.parse("05/01/2021", formatter), "TI", new Funcionario(5, "Eve", "TI"));
+        registros.add(r5);
+
+        RegistroCusto r6 = new RegistroCusto("Treinamento", 400.00, "Curso Online", LocalDate.parse("06/01/2021", formatter), "RH", new Funcionario(6, "Frank", "RH"));
+        registros.add(r6);
+
         criaDepartamentos();
         criaFuncionarios();
         criaRegistroDeCusto();
@@ -29,7 +47,7 @@ public class Empresa {
         executaMenu();
     }
 
-    private void criaDepartamentos(){
+    private void criaDepartamentos() {
         departamentos.add("RH");
         departamentos.add("Compras");
         departamentos.add("Vendas");
@@ -42,7 +60,7 @@ public class Empresa {
     }
 
 
-    private void criaFuncionarios(){
+    private void criaFuncionarios() {
         funcionarios.add(new Funcionario(1, "Alice", "RH"));
         funcionarios.add(new Funcionario(2, "Bob", "RH"));
 
@@ -71,7 +89,7 @@ public class Empresa {
         funcionarios.add(new Funcionario(18, "Rachel", "Financeiro"));
     }
 
-    private void criaRegistroDeCusto(){
+    private void criaRegistroDeCusto() {
         registros.add(new RegistroCusto("Aquisição", 2500, "Placa de Video", LocalDate.parse("25/09/2023", formatter), "TI", funcionarios.get(1)));
         registros.add(new RegistroCusto("Manutenção", 500, "Maquina de Café", LocalDate.parse("25/08/2023", formatter), "RH", funcionarios.get(2)));
 
@@ -91,11 +109,11 @@ public class Empresa {
         registros.add(new RegistroCusto("Aquisição", 5700, "Monitores", LocalDate.parse("19/04/2023", formatter), "TI", funcionarios.get(12)));
     }
 
-    private void login(){
+    private void login() {
         System.out.println("Selecione o usuario: ");
         System.out.println("=-=-=-=-=-=-=-=-=-=-");
         int cont = 0;
-        for(Funcionario aux: funcionarios){
+        for (Funcionario aux : funcionarios) {
             System.out.println("[" + cont + "] " + aux.getNome());
             cont++;
         }
@@ -103,28 +121,29 @@ public class Empresa {
 
         System.out.println("Digite o numero correspondente: ");
         int num = entrada.nextInt();
-        if(num<0 || num>= cont){
+        if (num < 0 || num >= cont) {
             throw new IndexOutOfBoundsException();
         } else {
             logado = funcionarios.get(num);
             System.out.println("O sistema foi iniciado no usuario de : " + logado.getNome() + " com a matricula: " + logado.getMatricula());
         }
     }
-    
-    private void executaMenu(){
+
+    private void executaMenu() {
         int op;
-        do{
+        do {
             menu();
             System.out.println("\nDigite a opção desejada: ");
             op = entrada.nextInt();
             entrada.nextLine();
-            switch(op){
+            switch (op) {
                 case 0:
-                    System.out.println("Fim do programa."); break;
+                    System.out.println("Fim do programa.");
+                    break;
                 case 1:
                     login();
                     break;
-                case 2: 
+                case 2:
                     cadastraFuncionario();
                     break;
                 case 4:
@@ -142,27 +161,30 @@ public class Empresa {
                 case 9:
                     mudaDepartamento();
                     break;
+                case 10:
+                    removeFuncionario();
                 default:
-                     break;
+                    break;
 
             }
-        }   while(op!=0);
+        } while (op != 0);
     }
 
-    private void menu(){
+    private void menu() {
         System.out.println("============= MENU =============");
         System.out.println("[0] Sair do Sistema");
         System.out.println("[1] Trocar de Usuário");
-		System.out.println("[2] Cadastra Funcionário");
+        System.out.println("[2] Cadastra Funcionário");
         System.out.println("[4] Cadastra Registro de Custos");
         System.out.println("[6] Remover Ultimo Registro de Custo");
         System.out.println("[7] Mostrar Painel de Estatísticas");
         System.out.println("[8] Escolha um depertamento para visualizar seus funcionarios");
         System.out.println("[9] Transferencia para outro departamento");
         System.out.println("================================");
+
     }
 
-    private void cadastraFuncionario(){
+    private void cadastraFuncionario() {
         int matricula;
         String nome;
         String departamento;
@@ -172,46 +194,43 @@ public class Empresa {
         matricula = entrada.nextInt();
 
         boolean matriculaExistente = false;
-        for(Funcionario f : funcionarios){
-            if(matricula==f.getMatricula()){
+        for (Funcionario f : funcionarios) {
+            if (matricula == f.getMatricula()) {
                 matriculaExistente = true;
                 System.out.println("Erro. Matrícula já pertence a um funcionário cadastrado.");
                 break;
-            }        
+            }
         }
 
-        if(!matriculaExistente){
+        if (!matriculaExistente) {
             entrada.nextLine();
             System.out.print("Informe o nome do funcionário: ");
             nome = entrada.nextLine();
             System.out.print("Informe o departamento do funcionário: ");
             departamento = entrada.nextLine();
-                if(!departamentos.contains(departamento)){
-                    System.out.println("Departamento não encontrado. Funcionário não cadastrado.");
-                }   
-                else{
-                    Funcionario funcionario = new Funcionario(matricula, nome, departamento);
-                    funcionarios.add(funcionario);
-                    System.out.println("Funcionário cadastrado. \nMatrícula: "+matricula+" | Nome: "+nome+" | Departamento: " + departamento);
-                }
+            if (!departamentos.contains(departamento)) {
+                System.out.println("Departamento não encontrado. Funcionário não cadastrado.");
+            } else {
+                Funcionario funcionario = new Funcionario(matricula, nome, departamento);
+                funcionarios.add(funcionario);
+                System.out.println("Funcionário cadastrado. \nMatrícula: " + matricula + " | Nome: " + nome + " | Departamento: " + departamento);
             }
         }
+    }
 
 
-    private void pesquisaRegistroCusto(){
+    private void pesquisaRegistroCusto() {
 
     }
 
-    private void excluiUltimoRegistroCusto(){
-        if(!registros.isEmpty()){
-            if(registros.get((registros.size()-1)).equals(ultimoRegistro)){
-                registros.remove((registros.size()-1));
-            System.out.println("Ultimo registro de custo removido com sucesso.");
-            }   
-            else
+    private void excluiUltimoRegistroCusto() {
+        if (!registros.isEmpty()) {
+            if (registros.get((registros.size() - 1)).equals(ultimoRegistro)) {
+                registros.remove((registros.size() - 1));
+                System.out.println("Ultimo registro de custo removido com sucesso.");
+            } else
                 System.out.println("Ultimo registro de custo já foi removido previamente.");
-            }
-        else
+        } else
             System.out.println("Não há nenhum registro de custo registrado");
     }
 
@@ -239,15 +258,14 @@ public class Empresa {
 
             RegistroCusto registro = registros.get(i);
         }
-        System.out.println("Nome: " + registros.get(0).getFuncionario().getNome() + "\n Custo: " + registros.get(0).getValor()+"\n");
-        System.out.println("Nome: " +registros.get(1).getFuncionario().getNome() + "\n Custo: " + registros.get(1).getValor()+"\n");
-        System.out.println("Nome: " +registros.get(2).getFuncionario().getNome() + "\n Custo: " + registros.get(2).getValor()+ "\n");
-        
+        System.out.println("Nome: " + registros.get(0).getFuncionario().getNome() + "\n Custo: " + registros.get(0).getValor() + "\n");
+        System.out.println("Nome: " + registros.get(1).getFuncionario().getNome() + "\n Custo: " + registros.get(1).getValor() + "\n");
+        System.out.println("Nome: " + registros.get(2).getFuncionario().getNome() + "\n Custo: " + registros.get(2).getValor() + "\n");
+
     }
 
 
-
-    private void cadastraRegistroCusto(){
+    private void cadastraRegistroCusto() {
         System.out.print("Insira valor do custo: ");
         double custo = entrada.nextDouble();
         entrada.nextLine();
@@ -262,34 +280,36 @@ public class Empresa {
         System.out.print("Insira a categoria do custo: ");
         String categoria = entrada.nextLine();
 
-        for(int i = 0; i < departamentos.size(); i++) {
+        for (int i = 0; i < departamentos.size(); i++) {
             System.out.println(departamentos.get(i));
         }
 
         boolean verifica = true;
-        while(verifica) {
+        while (verifica) {
             System.out.print("Insira o departamento: ");
             String departamento = entrada.nextLine();
 
-            for(int i = 0; i < departamentos.size(); i++) {
-                if(departamento.equals(departamentos.get(i))) {
+            for (int i = 0; i < departamentos.size(); i++) {
+                if (departamento.equals(departamentos.get(i))) {
 
                     RegistroCusto novoRegistro = new RegistroCusto(categoria, custo, descricao, dataFormatada, departamento, logado);
                     registros.add(novoRegistro);
                     ultimoRegistro = novoRegistro;
 
                     System.out.println("\nCadastro feito com sucesso.");
-                    System.out.println("Aquisição de " + descricao + ", R$" + custo +  ", " + dataFormatada + ", para o(a) " + departamento + ".");
+                    System.out.println("Aquisição de " + descricao + ", R$" + custo + ", " + dataFormatada + ", para o(a) " + departamento + ".");
                     verifica = false;
-                    if(!verifica); break;
+                    if (!verifica) ;
+                    break;
 
                 }
 
             }
-            if(verifica)System.out.println("Departamento não encontrado. Insira novamente.");
+            if (verifica) System.out.println("Departamento não encontrado. Insira novamente.");
         }
 
     }
+
     private void mostraFuncionarioPorDepartamento() {
         System.out.println("Escolha um departamento");
         String departamento = entrada.nextLine();
@@ -298,23 +318,23 @@ public class Empresa {
 
         boolean departamentoEncontrado = false;
 
-            for (Funcionario funcionario : funcionarios) {
-                if (funcionario.getDepartamento().equalsIgnoreCase(departamento)) {
-                     System.out.println("Matrícula: " + funcionario.getMatricula() +
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getDepartamento().equalsIgnoreCase(departamento)) {
+                System.out.println("Matrícula: " + funcionario.getMatricula() +
                         " | Nome: " + funcionario.getNome() +
                         " | Departamento: " + funcionario.getDepartamento());
-                            departamentoEncontrado = true;
+                departamentoEncontrado = true;
+            }
         }
-    }
-    if (!departamentoEncontrado) {
-        System.out.println("Não foi encontrado nenhum funcionario no/a " + departamento);
+        if (!departamentoEncontrado) {
+            System.out.println("Não foi encontrado nenhum funcionario no/a " + departamento);
         }
     }
 
-    private void mudaDepartamento(){
+    private void mudaDepartamento() {
         System.out.println("Insira o departamento que deseja ser transferido: ");
         String novoDepart = entrada.nextLine();
-        while(!departamentos.contains(novoDepart)){
+        while (!departamentos.contains(novoDepart)) {
             System.out.println("Departamento inválido, tente novamente.");
             novoDepart = entrada.nextLine();
         }
@@ -323,29 +343,55 @@ public class Empresa {
 
     }
 
-    private double calculaCustoMes(int mes, int ano){
+    private double calculaCustoMes(int mes, int ano) {
         double valorMes = 0;
-        for(RegistroCusto aux: registros){
+        for (RegistroCusto aux : registros) {
             LocalDate data = aux.getData();
-            if(data.getMonthValue() == mes && data.getYear() == ano){
+            if (data.getMonthValue() == mes && data.getYear() == ano) {
                 valorMes += aux.getValor();
             }
         }
         return valorMes;
     }
 
-    private void calculaTresMesesDepto(LocalDate data){
-        for(String depto: departamentos){
+    private void calculaTresMesesDepto(LocalDate data) {
+        for (String depto : departamentos) {
             double somaTresMeses = 0;
             System.out.print("Gasto do departamento de " + depto + ": R$ ");
-            for(RegistroCusto aux: registros){
-                if(aux.getDepartamento().equals(depto)){
-                    if(aux.getData().isAfter(data)){
+            for (RegistroCusto aux : registros) {
+                if (aux.getDepartamento().equals(depto)) {
+                    if (aux.getData().isAfter(data)) {
                         somaTresMeses += aux.getValor();
                     }
                 }
             }
             System.out.println(somaTresMeses);
+        }
+    }
+    private void removeFuncionario() {
+        if (logado != null) {
+            System.out.println("Insira a matrícula do funcionário que deseja remover: ");
+            int matricula = entrada.nextInt();
+            entrada.nextLine();
+
+            boolean remover = false;
+            for (int i = 0; i < funcionarios.size(); i++) {
+                if (funcionarios.get(i).getMatricula() == matricula) {
+                    Funcionario funcionarioRemovido = funcionarios.remove(i);
+                    System.out.println("Funcionário removido com sucesso");
+                    System.out.println("Matrícula: " + funcionarioRemovido.getMatricula() +
+                            " | Nome: " + funcionarioRemovido.getNome() +
+                            " | Departamento: " + funcionarioRemovido.getDepartamento());
+                    remover = true;
+                    break;
+                }
+            }
+             if (!remover) {
+                 System.out.println("Funcionário com a matrícula " + matricula + " não encontrado.");
+             }
+        } else {
+            System.out.println("Nenhum usuário logado. Faça o login antes de remover um funcionário.");
+
         }
     }
 }
