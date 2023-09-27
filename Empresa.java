@@ -51,6 +51,26 @@ public class Empresa {
     private void painelEstatisticas(){
 
     }
+
+    private void pesquisaDescricao(){
+        System.out.println("Digite a descrição para pesquisa: ");
+        String x = entrada.nextLine();
+        System.out.println("Pesquisando descrição ...");
+        for (RegistroCusto registro : registros) {
+            if (registro.getDescricao().equals(x)) {
+                System.out.println("Regristro encontrado!");
+                System.out.println("----====================----");
+                System.out.println("Descrição: " + registro.getDescricao());
+                System.out.println("Valor: " + registro.getValor());
+                System.out.println("Categoria: " + registro.getCategoria());
+                System.out.println("Departamento" + registro.getDepartamento());
+                System.out.println("Funcionário: " + registro.getFuncionario().getNome());
+            } else {
+                System.out.println("Nenhum registro encontrado para a descrição fornecida!");
+            }
+        }
+    }
+
     private void pesquisaDepartamento(){
         System.out.println("Digite o nome do departamento para pesquisa: ");
         String x = entrada.nextLine();
@@ -65,7 +85,7 @@ public class Empresa {
                 System.out.println("Departamento" + registro.getDepartamento());
                 System.out.println("Funcionário: " + registro.getFuncionario().getNome());
             } else {
-                System.out.println("Nenhum registro encontrado!");
+                System.out.println("Nenhum registro encontrado para o departamento fornecido!");
             }
         }
     }
