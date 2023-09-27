@@ -151,29 +151,35 @@ public class Empresa {
                 case 2:
                     cadastraFuncionario();
                     break;
-                case 4:
+                case 3:
                     cadastraRegistroCusto();
                     break;
-                case 5:
+                case 4:
                     executaMenuRegistros();
                     break;
-                case 6:
+                case 5:
                     excluiUltimoRegistroCusto();
                     break;
-                case 7:
+                case 6:
                     painelEstatisticas();
                     break;
-                case 8:
+                case 7:
                     mostraFuncionarioPorDepartamento();
                     break;
-                case 9:
+                case 8:
                     mudaDepartamento();
                     break;
-                case 10:
+                case 9:
                     removeFuncionario();
-                case 11:
+                    break;
+                case 10:
                     criaNovoDepartamento();
+                    break;
+                case 11:
+                    alteraMatricula();
+                    break;
                 default:
+                    System.out.println("Opção inválida.");
                     break;
 
             }
@@ -185,12 +191,15 @@ public class Empresa {
         System.out.println("[0] Sair do Sistema");
         System.out.println("[1] Trocar de Usuário");
         System.out.println("[2] Cadastra Funcionário");
-        System.out.println("[4] Cadastra Registro de Custos");
-        System.out.println("[5] Pesquisa Registros");
-        System.out.println("[6] Remover Ultimo Registro de Custo");
-        System.out.println("[7] Mostrar Painel de Estatísticas");
-        System.out.println("[8] Escolha um depertamento para visualizar seus funcionarios");
-        System.out.println("[9] Transferencia para outro departamento");
+        System.out.println("[3] Cadastra Registro de Custos");
+        System.out.println("[4] Pesquisa Registros");
+        System.out.println("[5] Remover Ultimo Registro de Custo");
+        System.out.println("[6] Mostrar Painel de Estatísticas");
+        System.out.println("[7] Escolha um depertamento para visualizar seus funcionarios");
+        System.out.println("[8] Transferencia para outro departamento");
+        System.out.println("[9] Remover funcionário");
+        System.out.println("[10] Cria novo departamento");
+        System.out.println("[11] Altera matrícula de funcionário");
         System.out.println("================================");
 
     }
@@ -532,8 +541,7 @@ public class Empresa {
 
 
     private void criaNovoDepartamento() {
-        boolean verifica = true;
-        boolean verifica2 = true;
+        boolean verifica = true, verifica2;
 
         while(verifica) {
             verifica2 = true;
@@ -555,6 +563,52 @@ public class Empresa {
                 verifica = false;
                 break;
           }
+        }
+    }
+
+    private Funcionario pesquisaFuncionario(int matricula){
+        for (Funcionario f: funcionarios){
+            if(f.getMatricula() == matricula){
+                return f;
+            }
+        }
+        return null;
+    }
+
+    private void alteraMatricula(){
+        boolean verifica = true;
+        while (verifica) {
+            System.out.println("Insira a matrícula atual do funcionário que deseja-se alterar: ");
+            int matricula = entrada.nextInt();
+            Funcionario f = pesquisaFuncionario(matricula);
+            if (f != null) {
+                System.out.println("Insira a nova matrícula: ");
+                matricula = entrada.nextInt();
+                if(pesquisaFuncionario(matricula) == null) {
+                    f.setMatricula(matricula);
+                    System.out.println("Funcionário " + f.getNome() + " do departamento " + f.getDepartamento()
+                            + " tem matrícula alterada com sucesso.");
+                    System.out.println("Nova matrícula: " + f.getMatricula());
+                    verifica = false;
+                }
+                else{
+                    System.out.println("Funcionário com essa matrícula já existente.");
+                    System.out.println("Deseja cancelar operação de troca de matrícula? ");
+                    System.out.println("Insira [0] para cancelar");
+                    int op = entrada.nextInt();
+                    if (op == 0){
+                        verifica = false;
+                    }
+                }
+            } else {
+                System.out.println("Não foi possível encontrar funcionário com essa matrícula.");
+                System.out.println("Deseja cancelar operação de troca de matrícula? ");
+                System.out.println("Insira [0] para cancelar");
+                int op = entrada.nextInt();
+                if (op == 0){
+                    verifica = false;
+                }
+            }
         }
     }
 }

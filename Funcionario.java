@@ -24,4 +24,8 @@ public class Funcionario {
     public void setDepartamento(String departamento){
         this.departamento = departamento;
     }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
 }
