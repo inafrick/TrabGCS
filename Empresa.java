@@ -41,6 +41,9 @@ public class Empresa {
         RegistroCusto r6 = new RegistroCusto("Treinamento", 400.00, "Curso Online", LocalDate.parse("06/01/2021", formatter), "RH", new Funcionario(6, "Frank", "RH"));
         registros.add(r6);
 
+        RegistroCusto r7 = new RegistroCusto("Treinamento", 400.00, "Curso Online", LocalDate.parse("01/01/2021", formatter), "RH", new Funcionario(6, "Frank", "RH"));
+        registros.add(r7);
+
         criaDepartamentos();
         criaFuncionarios();
         login();
@@ -127,12 +130,14 @@ public class Empresa {
                 case 4:
                     cadastraRegistroCusto();
                     break;
+                case 5:
+                    executaMenuRegistros();
+                    break;
                 case 6:
                     excluiUltimoRegistroCusto();
                     break;
                 case 7:
-                    executaMenuRegistros();
-                    break;
+                    
                 case 8:
                     mostraFuncionarioPorDepartamento();
                     break;
@@ -222,7 +227,7 @@ public class Empresa {
     private void executaMenuRegistros(){
         int op;
         do{
-            menu();
+            menuPesquisaRegistros();
             System.out.println("\nDigite a opção desejada: ");
             op = entrada.nextInt();
             entrada.nextLine();
@@ -253,61 +258,73 @@ public class Empresa {
     }
 
     private void pesquisaRegistroPorDescricao(){
+        boolean aux = true;
         System.out.println("Digite a descrição para pesquisa: ");
         String descricao = entrada.nextLine();
-        System.out.println("Pesquisando registro por descricao ...");
+        System.out.println("Pesquisando registro por descrição ...");
         for (RegistroCusto registro : registros) {
             if (registro.getDescricao().equalsIgnoreCase(descricao)) {
-                System.out.println("Regristro encontrado!");
+                aux = false;
+                System.out.println("\nRegistro encontrado!");
                 System.out.println("----====================----");
                 System.out.println("Descrição: " + registro.getDescricao());
                 System.out.println("Valor: " + registro.getValor());
                 System.out.println("Categoria: " + registro.getCategoria());
-                System.out.println("Departamento" + registro.getDepartamento());
+                System.out.println("Departamento: " + registro.getDepartamento());
                 System.out.println("Funcionário: " + registro.getFuncionario().getNome());
-            } else {
-                System.out.println("Nenhum registro encontrado para a descrição fornecida!");
-            }
+            } 
+        }
+        if(aux){
+            System.out.println("Nenhum registro encontrado para a descrição fornecida!");
         }
     }
+    
 
     private void pesquisaRegistroPorData(){
+        boolean aux = true;
         System.out.println("Digite a data para pesquisa: ");
         String data = entrada.nextLine();
+        LocalDate dataFormatada = LocalDate.parse(data, formatter);
         System.out.println("Pesquisando registro por data ...");
         for (RegistroCusto registro : registros) {
-            if (registro.getData().equals(data)) {
-                System.out.println("Regristro encontrado!");
+            if (registro.getData().equals(dataFormatada)) {
+                aux = false;
+                System.out.println("\nRegistro encontrado!");
                 System.out.println("----====================----");
                 System.out.println("Descrição: " + registro.getDescricao());
                 System.out.println("Valor: " + registro.getValor());
                 System.out.println("Categoria: " + registro.getCategoria());
-                System.out.println("Departamento" + registro.getDepartamento());
+                System.out.println("Departamento: " + registro.getDepartamento());
                 System.out.println("Funcionário: " + registro.getFuncionario().getNome());
-            } else {
-                System.out.println("Nenhum registro encontrado para a data fornecida!");
             }
+        }
+        if(aux){
+            System.out.println("Nenhum registro encontrado para a data fornecida!");
         }
     }
 
     private void pesquisaRegistroPorDepartamento(){
+        boolean aux = true;
         System.out.println("Digite o nome do departamento para pesquisa: ");
         String departamento = entrada.nextLine();
         System.out.println("Pesquisando registro por departamento ...");
         for (RegistroCusto registro : registros) {
             if (registro.getDepartamento().equalsIgnoreCase(departamento)) {
-                System.out.println("Regristro encontrado!");
+                aux = false;
+                System.out.println("\nRegistro encontrado!");
                 System.out.println("----====================----");
                 System.out.println("Descrição: " + registro.getDescricao());
                 System.out.println("Valor: " + registro.getValor());
                 System.out.println("Categoria: " + registro.getCategoria());
-                System.out.println("Departamento" + registro.getDepartamento());
+                System.out.println("Departamento: " + registro.getDepartamento());
                 System.out.println("Funcionário: " + registro.getFuncionario().getNome());
-            } else {
-                System.out.println("Nenhum registro encontrado para o departamento fornecido!");
             }
         }
+        if(aux){
+            System.out.println("Nenhum registro encontrado para o departamento fornecido!");
+        }
     }
+    
 
     private void cadastraRegistroCusto(){
         System.out.print("Insira valor do custo: ");
