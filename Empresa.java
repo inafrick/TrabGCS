@@ -17,6 +17,7 @@ public class Empresa {
     public void executa(){
         criaDepartamentos();
         login();
+
     }
 
     private void criaDepartamentos(){
@@ -50,7 +51,9 @@ public class Empresa {
     private void painelEstatisticas(){
 
     }
-    private void pesquisaDepartamento(String x){
+    private void pesquisaDepartamento(){
+        System.out.println("Digite o nome do departamento para pesquisa: ");
+        String x = entrada.nextLine();
         System.out.println("Pesquisando departamento ...");
         for (RegistroCusto registro : registros) {
             if (registro.getDepartamento().equals(x)) {
