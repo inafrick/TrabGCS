@@ -163,6 +163,8 @@ public class Empresa {
                     break;
                 case 10:
                     removeFuncionario();
+                case 11:
+                    criaNovoDepartamento();
                 default:
                     break;
 
@@ -392,6 +394,37 @@ public class Empresa {
         } else {
             System.out.println("Nenhum usuário logado. Faça o login antes de remover um funcionário.");
 
+        }
+    }
+
+
+
+
+
+    private void criaNovoDepartamento() {
+        boolean verifica = true;
+        boolean verifica2 = true;
+
+        while(verifica) {
+            verifica2 = true;
+            System.out.println("Insira o nome do novo departamento a ser criado: ");
+            String nome = entrada.nextLine();
+      
+            if(nome != null){
+                for(int i = 0; i < departamentos.size(); i++) {
+                if(nome.equalsIgnoreCase(departamentos.get(i))){
+                System.out.println("Este departamento já existe");
+                verifica2 = false;
+                break;
+                    }
+                }     
+           }
+            if(verifica2 == true) {
+                departamentos.add(nome);
+                System.out.println("Departamento criado com sucesso"); 
+                verifica = false;
+                break;
+          }
         }
     }
 }
