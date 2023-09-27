@@ -41,6 +41,7 @@ public class Empresa {
         departamentos.add("Financeiro");
     }
 
+
     private void criaFuncionarios(){
         funcionarios.add(new Funcionario(1, "Alice", "RH"));
         funcionarios.add(new Funcionario(2, "Bob", "RH"));
@@ -71,23 +72,23 @@ public class Empresa {
     }
 
     private void criaRegistroDeCusto(){
-        registros.add(new RegistroCusto("Aquisição", 2500, "Placa de Video", LocalDate.parse("25/09/2023", formatter), "TI", logado));
-        registros.add(new RegistroCusto("Manutenção", 500, "Maquina de Café", LocalDate.parse("25/08/2023", formatter), "RH", logado));
+        registros.add(new RegistroCusto("Aquisição", 2500, "Placa de Video", LocalDate.parse("25/09/2023", formatter), "TI", funcionarios.get(1)));
+        registros.add(new RegistroCusto("Manutenção", 500, "Maquina de Café", LocalDate.parse("25/08/2023", formatter), "RH", funcionarios.get(2)));
 
-        registros.add(new RegistroCusto("Aquisição", 1500, "Processador", LocalDate.parse("23/09/2023", formatter), "TI", logado));
-        registros.add(new RegistroCusto("Aquisição", 750, "Projetor", LocalDate.parse("25/09/2023", formatter), "Financeiro", logado));
+        registros.add(new RegistroCusto("Aquisição", 1500, "Processador", LocalDate.parse("23/09/2023", formatter), "TI", funcionarios.get(3)));
+        registros.add(new RegistroCusto("Aquisição", 750, "Projetor", LocalDate.parse("25/09/2023", formatter), "Financeiro", funcionarios.get(4)));
 
-        registros.add(new RegistroCusto("Aquisição", 150, "Cimento", LocalDate.parse("28/03/2021", formatter), "Engenharia", logado));
-        registros.add(new RegistroCusto("Aquisição", 500, "Grão de Café", LocalDate.parse("29/01/2022", formatter), "Financeiro", logado));
+        registros.add(new RegistroCusto("Aquisição", 150, "Cimento", LocalDate.parse("28/03/2021", formatter), "Engenharia", funcionarios.get(5)));
+        registros.add(new RegistroCusto("Aquisição", 500, "Grão de Café", LocalDate.parse("29/01/2022", formatter), "Financeiro", funcionarios.get(6)));
 
-        registros.add(new RegistroCusto("Aquisição", 635, "Placa Mãe", LocalDate.parse("15/10/2020", formatter), "TI", logado));
-        registros.add(new RegistroCusto("Aquisição", 250, "Panfletos", LocalDate.parse("25/09/2023", formatter), "Marketing", logado));
+        registros.add(new RegistroCusto("Aquisição", 635, "Placa Mãe", LocalDate.parse("15/10/2020", formatter), "TI", funcionarios.get(7)));
+        registros.add(new RegistroCusto("Aquisição", 250, "Panfletos", LocalDate.parse("25/09/2023", formatter), "Marketing", funcionarios.get(8)));
 
-        registros.add(new RegistroCusto("Aquisição", 2380, "Placa de Video", LocalDate.parse("08/08/2023", formatter), "Marketing", logado));
-        registros.add(new RegistroCusto("Manutenção", 2760, "Formatar PCs", LocalDate.parse("21/06/2023", formatter), "TI", logado));
+        registros.add(new RegistroCusto("Aquisição", 2380, "Placa de Video", LocalDate.parse("08/08/2023", formatter), "Marketing", funcionarios.get(9)));
+        registros.add(new RegistroCusto("Manutenção", 2760, "Formatar PCs", LocalDate.parse("21/06/2023", formatter), "TI", funcionarios.get(10)));
 
-        registros.add(new RegistroCusto("Aquisição", 75, "Trena", LocalDate.parse("30/08/2023", formatter), "Engenharia", logado));
-        registros.add(new RegistroCusto("Aquisição", 5700, "Monitores", LocalDate.parse("19/04/2023", formatter), "TI", logado));
+        registros.add(new RegistroCusto("Aquisição", 75, "Trena", LocalDate.parse("30/08/2023", formatter), "Engenharia", funcionarios.get(11)));
+        registros.add(new RegistroCusto("Aquisição", 5700, "Monitores", LocalDate.parse("19/04/2023", formatter), "TI", funcionarios.get(12)));
     }
 
     private void login(){
@@ -215,29 +216,32 @@ public class Empresa {
     }
 
     private void painelEstatisticas() {
-        System.out.println("Funcionário atualmente logado: " + logado.getNome());
+        System.out.println("\nFuncionário atualmente logado: " + logado.getNome());
         System.out.println("Valor total dos custos do mês atual: R$" + calculaCustoMes(9, 2023));
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+        System.out.println("Gastos dos Departamento nos últimos 3 meses:\n");
         calculaTresMesesDepto(LocalDate.parse("01/07/2023", formatter));
 
-        /**
-         * for (int i = 0; i < registros.size(); i++) {
-            System.out.println(registros.get(i));
-        }
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
         System.out.println("Os 3 funcionários com a maior soma de custos registrados: ");
-        for (int i = 0; i < registros.size() - 1; i++) {
-            double indiceMaior = registros.get(i).getValor();
-
+        for (int i = 0; i < registros.size(); i++) {
+            int indiceMaior = i;
             for (int j = i + 1; j < registros.size(); j++) {
-                if (registros.get(j).getValor() > indiceMaior) {
+                if (registros.get(j).getValor() > registros.get(indiceMaior).getValor()) {
                     indiceMaior = j;
                 }
             }
+            RegistroCusto registroI = registros.get(i);
+            RegistroCusto registroMaior = registros.get(indiceMaior);
 
+            registros.set(i, registroMaior);
+            registros.set(indiceMaior, registroI);
 
+            RegistroCusto registro = registros.get(i);
         }
-        System.out.println(registros.get(1).getValor() + "e "+ registros.get(1).getFuncionario().getNome());
-         */
+        System.out.println("Nome: " + registros.get(0).getFuncionario().getNome() + "\n Custo: " + registros.get(0).getValor()+"\n");
+        System.out.println("Nome: " +registros.get(1).getFuncionario().getNome() + "\n Custo: " + registros.get(1).getValor()+"\n");
+        System.out.println("Nome: " +registros.get(2).getFuncionario().getNome() + "\n Custo: " + registros.get(2).getValor()+ "\n");
         
     }
 
