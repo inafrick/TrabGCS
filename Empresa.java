@@ -52,6 +52,25 @@ public class Empresa {
 
     }
 
+    private void pesquisaRegistroPorCategoria(){
+        System.out.println("Digite a categoria para pesquisa: ");
+        String categoria = entrada.nextLine();
+        System.out.println("Pesquisando registro por categoria ...");
+        for (RegistroCusto registro : registros) {
+            if (registro.getCategoria().equalsIgnoreCase(categoria)) {
+                System.out.println("Regristro encontrado!");
+                System.out.println("----====================----");
+                System.out.println("Descrição: " + registro.getDescricao());
+                System.out.println("Valor: " + registro.getValor());
+                System.out.println("Categoria: " + registro.getCategoria());
+                System.out.println("Departamento" + registro.getDepartamento());
+                System.out.println("Funcionário: " + registro.getFuncionario().getNome());
+            } else {
+                System.out.println("Nenhum registro encontrado para a categoria fornecida!");
+            }
+        }
+    }
+
     private void pesquisaRegistroPorDescricao(){
         System.out.println("Digite a descrição para pesquisa: ");
         String descricao = entrada.nextLine();
