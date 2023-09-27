@@ -52,12 +52,12 @@ public class Empresa {
 
     }
 
-    private void pesquisaDescricao(){
+    private void pesquisaRegistroPorDescricao(){
         System.out.println("Digite a descrição para pesquisa: ");
-        String x = entrada.nextLine();
-        System.out.println("Pesquisando descrição ...");
+        String descricao = entrada.nextLine();
+        System.out.println("Pesquisando registro por descricao ...");
         for (RegistroCusto registro : registros) {
-            if (registro.getDescricao().equals(x)) {
+            if (registro.getDescricao().equalsIgnoreCase(descricao)) {
                 System.out.println("Regristro encontrado!");
                 System.out.println("----====================----");
                 System.out.println("Descrição: " + registro.getDescricao());
@@ -71,12 +71,12 @@ public class Empresa {
         }
     }
 
-    private void pesquisaDepartamento(){
+    private void pesquisaRegistroPorDepartamento(){
         System.out.println("Digite o nome do departamento para pesquisa: ");
-        String x = entrada.nextLine();
+        String departamento = entrada.nextLine();
         System.out.println("Pesquisando registro por departamento ...");
         for (RegistroCusto registro : registros) {
-            if (registro.getDepartamento().equals(x)) {
+            if (registro.getDepartamento().equalsIgnoreCase(departamento)) {
                 System.out.println("Regristro encontrado!");
                 System.out.println("----====================----");
                 System.out.println("Descrição: " + registro.getDescricao());
