@@ -22,6 +22,24 @@ public class Empresa {
     }
 
     public void executa(){
+        RegistroCusto r1 = new RegistroCusto("Alimentação", 100.00, "Almoço", LocalDate.parse("01/01/2021", formatter), "TI", new Funcionario(1, "Alice", "TI"));
+        registros.add(r1);
+
+        RegistroCusto r2 = new RegistroCusto("Transporte", 50.00, "Táxi", LocalDate.parse("02/01/2021", formatter), "TI", new Funcionario(2, "Bob", "TI"));
+        registros.add(r2);
+
+        RegistroCusto r3 = new RegistroCusto("Equipamentos", 200.00, "Compra de Mouse", LocalDate.parse("03/01/2021", formatter), "TI", new Funcionario(3, "Charlie", "TI"));
+        registros.add(r3);
+
+        RegistroCusto r4 = new RegistroCusto("Aluguel", 1500.00, "Aluguel de Sala", LocalDate.parse("04/01/2021", formatter), "Administração", new Funcionario(4, "David", "Administração"));
+        registros.add(r4);
+
+        RegistroCusto r5 = new RegistroCusto("Manutenção", 300.00, "Manutenção de Servidores", LocalDate.parse("05/01/2021", formatter), "TI", new Funcionario(5, "Eve", "TI"));
+        registros.add(r5);
+
+        RegistroCusto r6 = new RegistroCusto("Treinamento", 400.00, "Curso Online", LocalDate.parse("06/01/2021", formatter), "RH", new Funcionario(6, "Frank", "RH"));
+        registros.add(r6);
+
         criaDepartamentos();
         criaFuncionarios();
         login();
