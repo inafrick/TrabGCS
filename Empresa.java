@@ -74,7 +74,7 @@ public class Empresa {
     private void pesquisaDepartamento(){
         System.out.println("Digite o nome do departamento para pesquisa: ");
         String x = entrada.nextLine();
-        System.out.println("Pesquisando departamento ...");
+        System.out.println("Pesquisando registro por departamento ...");
         for (RegistroCusto registro : registros) {
             if (registro.getDepartamento().equals(x)) {
                 System.out.println("Regristro encontrado!");
