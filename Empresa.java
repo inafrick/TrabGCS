@@ -1,11 +1,14 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Empresa {
     private Scanner entrada;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<RegistroCusto> registros;
     private ArrayList<String> departamentos;
+    
 
     public Empresa(){
         entrada = new Scanner(System.in);
@@ -67,6 +70,25 @@ public class Empresa {
                 System.out.println("Funcionário: " + registro.getFuncionario().getNome());
             } else {
                 System.out.println("Nenhum registro encontrado para a descrição fornecida!");
+            }
+        }
+    }
+
+    private void pesquisaRegistroPorData(){
+        System.out.println("Digite a data para pesquisa: ");
+        String data = entrada.nextLine();
+        System.out.println("Pesquisando registro por data ...");
+        for (RegistroCusto registro : registros) {
+            if (registro.getData().equals(data)) {
+                System.out.println("Regristro encontrado!");
+                System.out.println("----====================----");
+                System.out.println("Descrição: " + registro.getDescricao());
+                System.out.println("Valor: " + registro.getValor());
+                System.out.println("Categoria: " + registro.getCategoria());
+                System.out.println("Departamento" + registro.getDepartamento());
+                System.out.println("Funcionário: " + registro.getFuncionario().getNome());
+            } else {
+                System.out.println("Nenhum registro encontrado para a data fornecida!");
             }
         }
     }
