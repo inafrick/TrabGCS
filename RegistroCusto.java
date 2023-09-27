@@ -8,7 +8,9 @@ public class RegistroCusto {
     private String departamento;
     private Funcionario funcionario;
 
-    public RegistroCusto(String categoria, double valor, String descricao,LocalDate data, String departamento, Funcionario funcionario) {
+    
+
+    public RegistroCusto(String categoria, double valor, String descricao, LocalDate data, String departamento, Funcionario funcionario) {
         this.categoria = categoria;
         this.valor = valor;
         this.descricao = descricao;
@@ -29,7 +31,10 @@ public class RegistroCusto {
         return descricao;
     }
 
-   
+    public LocalDate getData() {
+        return data;
+    }
+
     public String getDepartamento() {
         return departamento;
     }
@@ -37,10 +42,4 @@ public class RegistroCusto {
     public Funcionario getFuncionario() {
         return funcionario;
     }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    
 }
