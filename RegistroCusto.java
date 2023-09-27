@@ -1,19 +1,20 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class RegistroCusto {
     private String categoria;
     private double valor;
     private String descricao;
-    private Date data;
+    private LocalDate data;
     private String departamento;
     private Funcionario funcionario;
 
-    // ESTA SEM O ATRIBUTO DATA
-    public RegistroCusto(String categoria, double valor, String descricao, String departamento, Funcionario funcionario) {
+    
+
+    public RegistroCusto(String categoria, double valor, String descricao, LocalDate data, String departamento, Funcionario funcionario) {
         this.categoria = categoria;
         this.valor = valor;
         this.descricao = descricao;
-//        this.data = data;
+        this.data = data;
         this.departamento = departamento;
         this.funcionario = funcionario;
     }
@@ -30,7 +31,7 @@ public class RegistroCusto {
         return descricao;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
