@@ -159,6 +159,9 @@ public class Empresa {
                 case 11:
                     alteraMatricula();
                     break;
+                case 13:
+                    exibirFuncionarios();
+                    break;
                 default:
                     System.out.println("Opção inválida.");
                     break;
@@ -574,6 +577,15 @@ public class Empresa {
             }
         } else {
             System.out.println("Não foi possível encontrar funcionário com essa matrícula.");
+        }
+    }
+    public void exibirFuncionarios() {
+        System.out.println("Lista de Funcionários:");
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println("Matrícula: " + funcionario.getMatricula());
+            System.out.println("Nome: " + funcionario.getNome());
+            System.out.println("Departamento: " + funcionario.getDepartamento());
+            System.out.println("----------------------");
         }
     }
 }
