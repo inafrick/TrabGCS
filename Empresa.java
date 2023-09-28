@@ -161,6 +161,8 @@ public class Empresa {
                     break;
                 case 12:
                     pesquisarFuncionarioPorMatricula();
+                case 13:
+                    exibirFuncionarios();
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -185,6 +187,7 @@ public class Empresa {
         System.out.println("[10] Cria novo departamento");
         System.out.println("[11] Altera matrícula de funcionário");
         System.out.println("[12] Pesquisa funcionário por matrícula");
+        System.out.println("[13] Exibe lista de funcionários");
         System.out.println("================================");
 
     }
@@ -580,9 +583,10 @@ public class Empresa {
             System.out.println("Não foi possível encontrar funcionário com essa matrícula.");
         }
     }
+
     public void pesquisarFuncionarioPorMatricula() {
         System.out.println("Digite a matricula: ");
-        int matricula=entrada.nextInt();
+        int matricula = entrada.nextInt();
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getMatricula() == matricula) {
                 System.out.println("Informações do Funcionário:");
@@ -593,6 +597,16 @@ public class Empresa {
             }
         }
         System.out.println("Funcionário com matrícula " + matricula + " não encontrado.");
+    }
+    public void exibirFuncionarios() {
+        System.out.println("Lista de Funcionários:");
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println("Matrícula: " + funcionario.getMatricula());
+            System.out.println("Nome: " + funcionario.getNome());
+            System.out.println("Departamento: " + funcionario.getDepartamento());
+            System.out.println("----------------------");
+        }
+
     }
 }
 
