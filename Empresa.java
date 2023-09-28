@@ -161,6 +161,7 @@ public class Empresa {
                     break;
                 case 12:
                     pesquisarFuncionarioPorMatricula();
+                    break;
                 case 13:
                     exibirFuncionarios();
                     break;
