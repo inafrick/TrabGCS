@@ -8,9 +8,10 @@ public class Empresa {
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<RegistroCusto> registros;
     private ArrayList<String> departamentos;
-        private Funcionario logado;
+    private Funcionario logado;
     private DateTimeFormatter formatter;
     private RegistroCusto ultimoRegistro;
+    private LocalDate dataAtual;
 
 
     public Empresa() {
@@ -20,30 +21,10 @@ public class Empresa {
         departamentos = new ArrayList<>();
         logado = null;
         formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        dataAtual = LocalDate.now();
     }
 
     public void executa() {
-        RegistroCusto r1 = new RegistroCusto("Alimentação", 100.00, "Almoço", LocalDate.parse("01/01/2021", formatter), "TI", new Funcionario(1, "Alice", "TI"));
-        registros.add(r1);
-
-        RegistroCusto r2 = new RegistroCusto("Transporte", 50.00, "Táxi", LocalDate.parse("02/01/2021", formatter), "TI", new Funcionario(2, "Bob", "TI"));
-        registros.add(r2);
-
-        RegistroCusto r3 = new RegistroCusto("Equipamentos", 200.00, "Compra de Mouse", LocalDate.parse("03/01/2021", formatter), "TI", new Funcionario(3, "Charlie", "TI"));
-        registros.add(r3);
-
-        RegistroCusto r4 = new RegistroCusto("Aluguel", 1500.00, "Aluguel de Sala", LocalDate.parse("04/01/2021", formatter), "Administração", new Funcionario(4, "David", "Administração"));
-        registros.add(r4);
-
-        RegistroCusto r5 = new RegistroCusto("Manutenção", 300.00, "Manutenção de Servidores", LocalDate.parse("05/01/2021", formatter), "TI", new Funcionario(5, "Eve", "TI"));
-        registros.add(r5);
-
-        RegistroCusto r6 = new RegistroCusto("Treinamento", 400.00, "Curso Online", LocalDate.parse("06/01/2021", formatter), "RH", new Funcionario(6, "Frank", "RH"));
-        registros.add(r6);
-
-        RegistroCusto r7 = new RegistroCusto("Treinamento", 400.00, "Curso Online", LocalDate.parse("01/01/2021", formatter), "RH", new Funcionario(6, "Frank", "RH"));
-        registros.add(r7);
-
         criaDepartamentos();
         criaFuncionarios();
         criaRegistroDeCusto();
@@ -130,7 +111,7 @@ public class Empresa {
             throw new IndexOutOfBoundsException();
         } else {
             logado = funcionarios.get(num);
-            System.out.println("O sistema foi iniciado no usuario de : " + logado.getNome() + " com a matricula: " + logado.getMatricula());
+            System.out.println("O sistema foi iniciado no usuario de: " + logado.getNome() + "  || com a matricula: " + logado.getMatricula());
         }
     }
 
@@ -253,10 +234,10 @@ public class Empresa {
 
     private void painelEstatisticas() {
         System.out.println("\nFuncionário atualmente logado: " + logado.getNome());
-        System.out.println("Valor total dos custos do mês atual: R$" + calculaCustoMes(9, 2023));
+        System.out.println("Valor total dos custos do mês atual: R$" + calculaCustoMes(dataAtual.getMonthValue(), dataAtual.getYear()));
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
         System.out.println("Gastos dos Departamento nos últimos 3 meses:\n");
-        calculaTresMesesDepto(LocalDate.parse("01/07/2023", formatter));
+        calculaTresMesesDepto(dataAtual.minusMonths(3));
 
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
         System.out.println("Os 3 funcionários com a maior soma de custos registrados: ");
@@ -273,7 +254,6 @@ public class Empresa {
             registros.set(i, registroMaior);
             registros.set(indiceMaior, registroI);
 
-            RegistroCusto registro = registros.get(i);
         }
         System.out.println("Nome: " + registros.get(0).getFuncionario().getNome() + "\n Custo: " + registros.get(0).getValor() + "\n");
         System.out.println("Nome: " + registros.get(1).getFuncionario().getNome() + "\n Custo: " + registros.get(1).getValor() + "\n");
@@ -576,39 +556,24 @@ public class Empresa {
     }
 
     private void alteraMatricula(){
-        boolean verifica = true;
-        while (verifica) {
-            System.out.println("Insira a matrícula atual do funcionário que deseja-se alterar: ");
-            int matricula = entrada.nextInt();
-            Funcionario f = pesquisaFuncionario(matricula);
-            if (f != null) {
-                System.out.println("Insira a nova matrícula: ");
-                matricula = entrada.nextInt();
-                if(pesquisaFuncionario(matricula) == null) {
-                    f.setMatricula(matricula);
-                    System.out.println("Funcionário " + f.getNome() + " do departamento " + f.getDepartamento()
-                            + " tem matrícula alterada com sucesso.");
-                    System.out.println("Nova matrícula: " + f.getMatricula());
-                    verifica = false;
-                }
-                else{
-                    System.out.println("Funcionário com essa matrícula já existente.");
-                    System.out.println("Deseja cancelar operação de troca de matrícula? ");
-                    System.out.println("Insira [0] para cancelar");
-                    int op = entrada.nextInt();
-                    if (op == 0){
-                        verifica = false;
-                    }
-                }
-            } else {
-                System.out.println("Não foi possível encontrar funcionário com essa matrícula.");
-                System.out.println("Deseja cancelar operação de troca de matrícula? ");
-                System.out.println("Insira [0] para cancelar");
-                int op = entrada.nextInt();
-                if (op == 0){
-                    verifica = false;
-                }
+        System.out.println("Insira a matrícula atual do funcionário que deseja-se alterar: ");
+        int matricula = entrada.nextInt();
+        Funcionario f = pesquisaFuncionario(matricula);
+
+        if (f != null) {
+            System.out.println("Insira a nova matrícula: ");
+            int matriculaNova = entrada.nextInt();
+
+            if(pesquisaFuncionario(matriculaNova) == null) {
+                f.setMatricula(matriculaNova);
+                System.out.println("Funcionário " + f.getNome() + " do departamento " + f.getDepartamento() + " tem matrícula alterada com sucesso.");
+                System.out.println("Nova matrícula: " + f.getMatricula());
             }
+            else {
+                System.out.println("Funcionário com essa matrícula já existente.");
+            }
+        } else {
+            System.out.println("Não foi possível encontrar funcionário com essa matrícula.");
         }
     }
 }
