@@ -184,6 +184,7 @@ public class Empresa {
         System.out.println("[9] Remover funcionário");
         System.out.println("[10] Cria novo departamento");
         System.out.println("[11] Altera matrícula de funcionário");
+        System.out.println("[12] Pesquisa funcionário por matrícula");
         System.out.println("================================");
 
     }
