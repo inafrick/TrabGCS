@@ -109,7 +109,9 @@ public class Empresa {
         int num = entrada.nextInt();
         if (num < 0 || num >= cont) {
             throw new IndexOutOfBoundsException();
-        } else {
+        }
+            if(funcionarios.isEmpty()) throw new IndexOutOfBoundsException();
+         else {
             logado = funcionarios.get(num);
             System.out.println("O sistema foi iniciado no usuario de: " + logado.getNome() + "  || com a matricula: " + logado.getMatricula());
         }
