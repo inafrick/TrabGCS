@@ -12,10 +12,7 @@ public class Empresa {
         registros = new ArrayList<>();
     }
 
-    public void executa() {
-        return;
 
-    }
 
     private void login() {
 
